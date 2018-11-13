@@ -16,6 +16,7 @@
                 </ul>
             </div>
             <div class="card-action"><NewMessage :name="name" /></div>
+            <!-- data binding : cuz it will pass a string -->
         </div>
     </div>
 </template>
@@ -41,6 +42,7 @@ export default {
 
         ref.onSnapshot(snapshot => {
             snapshot.docChanges.forEach(change => {
+                // docChanges is property of firebase
                 if (change.type == "added") {
                     let doc = change.doc;
                     this.messages.push({

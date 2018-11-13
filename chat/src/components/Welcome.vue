@@ -41,7 +41,7 @@ export default {
 <style>
 .welcome {
     max-width: 400px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .welcome h2 {
     font-size: 3em;
