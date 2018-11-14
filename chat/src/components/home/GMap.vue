@@ -7,12 +7,13 @@
 
 <script>
 import firebase from "firebase";
+import db from "@/firebase/init";
 export default {
     name: "GMap",
     data() {
         return {
-            lat: 52,
-            lng: 14
+            lat: 34,
+            lng: 84
         };
     },
     methods: {
@@ -27,8 +28,49 @@ export default {
         }
     },
     mounted() {
-        this.renderMap();
-        console.log(firebase.auth().currentUser);
+        //get current user
+        let user = firebase.auth().currentUser;
+        // console.log("user:", user);
+        // get user geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                pos => {
+                    this.lat = pos.coords.latitude;
+                    this.lng = pos.coords.longitude;
+                    // find the user record and then update geo coords
+                    db.collection("users")
+                        .where("user_id", "==", user.uid) //user_id should match user.uid from line 32 and console log
+                        .get()
+                        .then(snapshot => {
+                            snapshot.forEach(doc => {
+                                console.log("doc.id:", doc.id); //this is the slug of the alias
+                                db.collection("users")
+                                    .doc(doc.id)
+                                    .update({
+                                        geolocation: {
+                                            lat: pos.coords.latitude,
+                                            lng: pos.coords.longitude
+                                        }
+                                    });
+                            });
+                        })
+                        .then(() => {
+                            this.renderMap();
+                        });
+
+                    this.renderMap();
+                },
+                err => {
+                    console.log(err);
+                    this.renderMap();
+                },
+                { maximumAge: 60000, timeout: 3000 }
+            ); //maximumage looking for catched position within an hour
+        } else {
+            // position centre by defualt values
+            this.renderMap();
+        }
+        // console.log(firebase.auth().currentUser);
     }
 };
 </script>
