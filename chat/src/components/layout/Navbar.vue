@@ -7,17 +7,27 @@
                     brand-logo - gives a bit of style and pushes it to the lest
                 -->
                 <ul class="right">
-                    <li><a href="#/">Chat</a></li>
-                    <li><a href="#/map">Map</a></li>
-                    <li>
+                    <li v-if="user">
+                        <a class="current-email">{{ user.email }}</a>
+                    </li>
+                    <li v-if="user">
+                        <router-link :to="{ name: 'Welcome' }"
+                            >Chat</router-link
+                        >
+                    </li>
+                    <li v-if="user">
+                        <router-link :to="{ name: 'GMap' }">Map</router-link>
+                    </li>
+                    <li v-if="!user">
+                        <!-- !user only shows when user is not logged in -->
                         <router-link :to="{ name: 'Signup' }"
                             >Signup</router-link
                         >
                     </li>
-                    <li>
+                    <li v-if="!user">
                         <router-link :to="{ name: 'Login' }">Login</router-link>
                     </li>
-                    <li><a @click="logout">Log out</a></li>
+                    <li v-if="user"><a @click="logout">Log out</a></li>
                 </ul>
             </div>
         </nav>
@@ -29,7 +39,9 @@ import firebase from "firebase";
 export default {
     name: "Navbar",
     data() {
-        return {};
+        return {
+            user: null
+        };
     },
     methods: {
         logout() {
@@ -40,8 +52,23 @@ export default {
                     this.$router.push({ name: "Login" });
                 });
         }
+    },
+    created() {
+        //let user = firebase.auth().currentUser;
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.user = user;
+            } else {
+                this.user = null;
+            }
+        });
     }
 };
 </script>
 
-<style></style>
+<style>
+.current-email {
+    color: rgb(17, 218, 197);
+    font-weight: bold;
+}
+</style>
