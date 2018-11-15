@@ -1,11 +1,17 @@
 <template>
-    <div class="navbar">
-        <nav class="teal darken-1">
+    <div class="navbar ">
+        <nav class="teal darken-1 ">
             <div class="container">
-                <a class="brand-logo left" href="#">Navbar</a>
+                <router-link :to="{ name: 'HomePage' }">
+                    <img
+                        class="brand-logo left logo"
+                        src="https://i.imgur.com/VxTOuXi.png"
+                        alt="logo"
+                /></router-link>
                 <!--
                     brand-logo - gives a bit of style and pushes it to the lest
                 -->
+
                 <ul class="right">
                     <li v-if="user">
                         <a class="current-email">{{ user.email }}</a>
@@ -18,15 +24,16 @@
                     <li v-if="user">
                         <router-link :to="{ name: 'GMap' }">Map</router-link>
                     </li>
-                    <li v-if="!user">
-                        <!-- !user only shows when user is not logged in -->
-                        <router-link :to="{ name: 'Signup' }"
-                            >Signup</router-link
-                        >
-                    </li>
-                    <li v-if="!user">
-                        <router-link :to="{ name: 'Login' }">Login</router-link>
-                    </li>
+                    <!--
+                        <li v-if="!user">
+                            <router-link :to="{ name: 'Signup' }"
+                                >Signup</router-link
+                            >
+                        </li>
+                        <li v-if="!user">
+                            <router-link :to="{ name: 'Login' }">Login</router-link>
+                        </li>
+                    -->
                     <li v-if="user"><a @click="logout">Log out</a></li>
                 </ul>
             </div>
@@ -67,8 +74,11 @@ export default {
 </script>
 
 <style>
-.current-email {
-    color: rgb(17, 218, 197);
+.navbar .current-email {
+    color: rgb(20, 193, 176);
     font-weight: bold;
+}
+.navbar .logo {
+    height: 9%;
 }
 </style>

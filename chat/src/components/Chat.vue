@@ -2,7 +2,7 @@
     <div class="chat container">
         <h2 class="center teal-text">{{ this.name }} is chatting...</h2>
         <div class="card">
-            <div class="card-content">
+            <div class="card-content z-depth-3">
                 <ul class="messages" v-chat-scroll>
                     <li v-for="message in messages" :key="message.id">
                         <span class="teal-text">{{ message.name }}</span>

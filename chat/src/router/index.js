@@ -8,13 +8,16 @@ import GMap from "@/components/home/GMap";
 import Signup from "@/components/auth/Signup";
 import Login from "@/components/auth/Login";
 import ViewProfile from "@/components/profile/ViewProfile";
+import HomePage from "@/components/layout/HomePage";
+import ImageUpload from "@/components/upload/ImageUpload";
 
 Vue.use(Router);
 
 const router = new Router({
+    mode: "history",
     routes: [
         {
-            path: "/",
+            path: "/chatwelcome",
             name: "Welcome",
             component: Welcome,
             meta: {
@@ -26,6 +29,9 @@ const router = new Router({
             name: "Chat",
             component: Chat,
             props: true,
+            meta: {
+                requiresAuth: true
+            },
             beforeEnter: (to, from, next) => {
                 // route guard!
                 if (to.params.name) {
@@ -49,7 +55,7 @@ const router = new Router({
             component: Signup
         },
         {
-            path: "/login",
+            path: "/",
             name: "Login",
             component: Login
         },
@@ -57,6 +63,22 @@ const router = new Router({
             path: "/profile/:id",
             name: "ViewProfile",
             component: ViewProfile,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/homepage",
+            name: "HomePage",
+            component: HomePage,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/imageupload",
+            name: "ImageUpload",
+            component: ImageUpload,
             meta: {
                 requiresAuth: true
             }

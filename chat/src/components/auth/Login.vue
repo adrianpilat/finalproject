@@ -1,6 +1,6 @@
 <template>
     <div class="login container">
-        <form @submit.prevent="login" class="card-panel">
+        <form @submit.prevent="login" class="card-panel z-depth-3">
             <h2 class="center teal-text">Login</h2>
             <div class="field">
                 <label for="email">Email</label>
@@ -12,7 +12,7 @@
             </div>
             <p v-if="feedback" class="red-text center">{{ feedback }}</p>
             <div class="field center">
-                <button class="btn teal">Log in</button>
+                <button class="btn  waves-effect waves-light">Log in</button>
             </div>
         </form>
     </div>
@@ -38,7 +38,7 @@ export default {
                     .signInWithEmailAndPassword(this.email, this.password)
                     .then(user => {
                         console.log(user);
-                        this.$router.push({ name: "GMap" });
+                        this.$router.push({ name: "HomePage" });
                     })
                     .catch(err => {
                         this.feedback = err.message;
@@ -55,10 +55,11 @@ export default {
 <style>
 .login {
     max-width: 400px;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 .login h2 {
     font-size: 2.4em;
+    margin-top: 0;
 }
 .login .field {
     margin-bottom: 16px;

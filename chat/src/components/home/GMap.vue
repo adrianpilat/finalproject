@@ -1,6 +1,6 @@
 <template>
     <div class="map">
-        <h3>Map!</h3>
+        <h2 class="teal-text">Check who's online right now.</h2>
         <div class="google-map" id="map"></div>
     </div>
 </template>
@@ -88,7 +88,7 @@ export default {
                     console.log(err);
                     this.renderMap();
                 },
-                { maximumAge: 60000, timeout: 3000 }
+                { maximumAge: 600, timeout: 3000 }
             ); //maximumage looking for catched position within an hour
         } else {
             // position centre by defualt values
@@ -109,5 +109,10 @@ export default {
     top: 0;
     left: 0;
     z-index: -1;
+}
+.map h2 {
+    font-size: 1.8em;
+    margin-top: 7px;
+    margin-left: 8px;
 }
 </style>

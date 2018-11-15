@@ -30,5 +30,11 @@ export default {
 <style>
 body {
     background-color: #f2f3f5;
+    /* background-image: linear-gradient(
+            rgba(2, 106, 106, 0.35),
+            rgba(2, 106, 106, 0.35)
+        ),
+        url("./assets/circuit.png"); */
+    background-image: url("./assets/what-the-hex.png");
 }
 </style>

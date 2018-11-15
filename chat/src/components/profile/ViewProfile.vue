@@ -1,7 +1,7 @@
 <template>
     <div class="view-profile container">
-        <div v-if="profile" class="card">
-            <h2 class="teal-text center">{{ profile.alias }}'s Wall</h2>
+        <div v-if="profile" class="card z-depth-3">
+            <h2 class="teal-text center">{{ profile.alias }}'s wall</h2>
             <ul class="comments collection">
                 <li v-for="(comment, index) in comments" :key="index">
                     <div class="teal-text">{{ comment.from }}</div>

@@ -1,7 +1,7 @@
 <template>
     <div class="welcome container">
         <div class="card">
-            <div class="card-content center-align">
+            <div class="card-content center-align z-depth-3">
                 <h2 class="teal-text">Works like a charm!</h2>
                 <form @submit.prevent="enterChat">
                     <label for="name">Enter your name</label>
