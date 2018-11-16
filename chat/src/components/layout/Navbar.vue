@@ -24,6 +24,11 @@
                     <li v-if="user">
                         <router-link :to="{ name: 'GMap' }">Map</router-link>
                     </li>
+                    <li v-if="user">
+                        <router-link :to="{ name: 'ImageUpload' }"
+                            >Images</router-link
+                        >
+                    </li>
                     <!--
                         <li v-if="!user">
                             <router-link :to="{ name: 'Signup' }"
