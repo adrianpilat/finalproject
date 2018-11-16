@@ -29,16 +29,6 @@
                             >Images</router-link
                         >
                     </li>
-                    <!--
-                        <li v-if="!user">
-                            <router-link :to="{ name: 'Signup' }"
-                                >Signup</router-link
-                            >
-                        </li>
-                        <li v-if="!user">
-                            <router-link :to="{ name: 'Login' }">Login</router-link>
-                        </li>
-                    -->
                     <li v-if="user"><a @click="logout">Log out</a></li>
                 </ul>
             </div>
@@ -84,6 +74,11 @@ export default {
     font-weight: bold;
 }
 .navbar .logo {
-    height: 9%;
+    height: 63px;
+}
+@media only screen and (min-width: 200px) and (max-width: 1050px) {
+    .navbar .logo {
+        display: none;
+    }
 }
 </style>
